@@ -23,7 +23,7 @@ public class UserController implements UserControllerTemplate {
             // zapisanie tablicy liczb w typie String
             String passwordHashTxt = "";
             for (byte digit : passwordHash) {
-                passwordHashTxt += String.format("%x",digit);
+                passwordHashTxt += String.format("%x", digit);
             }
             return passwordHashTxt;
         } catch (NoSuchAlgorithmException e) {
@@ -52,16 +52,34 @@ public class UserController implements UserControllerTemplate {
         return false;
     }
 
+    // ---------------------------
     @Override
     public User findUserById(int userId) {
+        for (User user : users) {
+            if (user.getUserId() == userId) {
+                System.out.println("Znaleziono użytkownika " + user);
+                return user;
+
+            }
+        }
+        System.out.println("nie znaleziono użytkownika o id " + userId);
         return null;
     }
 
     @Override
     public void updateUserPassword(int userId, String newPassword) {
-
+        // pobranie uzytkownika na podstawie hasła
+        User user = findUserById(userId);
+        if (user != null) {
+            // zmiana hasła
+            user.setPassword(passwordEncoder(newPassword));
+            System.out.println("Zmieniono hasło ");
+        } else {
+            System.out.println("Nie zmieniono hasła");
+        }
     }
 
+    //----------------------------------
     @Override
     public void deleteUserById(int userId) {
 
