@@ -26,7 +26,7 @@ public interface UserControllerTemplate {
                             "Kowalski",
                             "aa@wp.pl",
                             "akak",
-                            "123456789",
+                            "123-456-789",
                             Gender.MAN),
 
                     new User(
@@ -34,14 +34,14 @@ public interface UserControllerTemplate {
                             "Wiśniak",
                             "cdp.pl",
                             "janek",
-                            "123456789",
+                            "123-456-789",
                             Gender.MAN),
                     new User(
                             "Anna",
                             "Wiśniewska",
                             "aa@wp.pl",
                             "lelek",
-                            "123456789",
+                            "123-456-000",
                             Gender.WOMAN)
             )
     );
