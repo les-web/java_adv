@@ -45,7 +45,7 @@ public interface UserControllerTemplate {
                             Gender.WOMAN)
             )
     );
-   
+
     // rejestracja
     void registerUser(User user);
 
