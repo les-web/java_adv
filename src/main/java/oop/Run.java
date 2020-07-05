@@ -1,5 +1,6 @@
 package oop;
 
+import oop.controller.InputOutputController;
 import oop.controller.UserController;
 import oop.controller.UserControllerTemplate;
 import oop.model.User;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Run {
+public class Run extends InputOutputController {
     public static void main(String[] args) {
    /*
         User u1 = new User(
@@ -44,7 +45,11 @@ public class Run {
 
         UserController uc = new UserController();
         Scanner scanner = new Scanner(System.in);
-        List<User> users = UserControllerTemplate.users;
+
+   //     List<User> users = UserControllerTemplate.users;
+        Run run = new Run();
+        run.readUsersFromFile();
+
         while (true) {
             System.out.println(" Co chcesz zrobić \n1. Rejestracja \n2.Lista użytkowników \n3 Logowanie \n4 Zmiana hasła \nQ Wyjście");
             String choice = scanner.nextLine().toUpperCase();
@@ -110,6 +115,7 @@ public class Run {
                 }
             } else if (choice.equals("Q")) {
                 System.out.println("Wyjście ");
+                run.saveUsersToFile();
                 break;
             } else {
                 System.out.println("Błędny wybór");

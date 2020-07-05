@@ -21,28 +21,7 @@ public interface UserControllerTemplate {
 
     List<User> users = new ArrayList<>(
             Arrays.asList(
-                    new User(
-                            "Adam",
-                            "Kowalski",
-                            "aa@wp.pl",
-                            "akak",
-                            "123-456-789",
-                            Gender.MAN),
-
-                    new User(
-                            "Jan",
-                            "Wiśniak",
-                            "cdp.pl",
-                            "janek",
-                            "123-456-789",
-                            Gender.MAN),
-                    new User(
-                            "Anna",
-                            "Wiśniewska",
-                            "aa@wp.pl",
-                            "lelek",
-                            "123-456-000",
-                            Gender.WOMAN)
+ //                           Gender.WOMAN)
             )
     );
 
