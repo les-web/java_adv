@@ -23,7 +23,7 @@ public class UserController implements UserControllerTemplate {
             // zapisanie tablicy liczb w typie String
             String passwordHashTxt = "";
             for (byte digit : passwordHash) {
-                passwordHashTxt += digit;
+                passwordHashTxt += String.format("%x",digit);
             }
             return passwordHashTxt;
         } catch (NoSuchAlgorithmException e) {
@@ -42,6 +42,13 @@ public class UserController implements UserControllerTemplate {
 
     @Override
     public boolean loginUser(String email, String password) {
+        for (User user : users) {
+            // porownanie emaila i hashow haseł
+            if (user.getEmail().equals(email) && user.getPassword().equals(passwordEncoder(password))) {
+                System.out.println("Zalogowano użytkownika " + user.getEmail());
+                return true;
+            }
+        }
         return false;
     }
 
