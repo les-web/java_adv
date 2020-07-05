@@ -21,7 +21,7 @@ import java.util.Set;
 
 public class User {
     // składowa statyczna jedna dla wszysykich instancji klasy
-    private static int globalId =1;
+    private static int globalId = 1;
     private int userId;
     private String name;
     private String lastName;
@@ -30,7 +30,7 @@ public class User {
     private String phone;
     private Gender gender;          // płeć jest typem
     // zbiór ról
-    private Set<Role>  roles = new HashSet<>(Arrays.asList(Role.ROLE_USER));
+    private Set<Role> roles = new HashSet<>(Arrays.asList(Role.ROLE_USER));
     private LocalDateTime registrationDateTime = LocalDateTime.now();
     private boolean status;
     private boolean removed;
@@ -43,14 +43,14 @@ public class User {
         this.phone = phone;
         this.gender = gender;
         this.userId = globalId;
-        globalId++;
+        globalId++;  // inkrementacja zmiennej statycznej
     }
 
     @Override
     public String toString() {
         return String.format("| %3d | %15s | %15s | %10s | %10s | %9s | %10s | %40s | %25s | %6s | %6s |",
-                userId,name,lastName,email,password,phone,
-                gender.getGenderName(), roles, registrationDateTime, status, removed)  ;
+                userId, name, lastName, email, password, phone,
+                gender.getGenderName(), roles, registrationDateTime, status, removed);
     }
 
     public String getName() {

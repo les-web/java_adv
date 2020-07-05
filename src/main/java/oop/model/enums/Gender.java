@@ -6,10 +6,12 @@ public enum Gender {
 
     private final String genderName;
 
-    public String getGenderName (){
+    public String getGenderName() {
         return genderName;
     }
+
     Gender(String genderName) {         // konstruktor typu wyliczeniowego
+
         this.genderName = genderName;
     }
 
