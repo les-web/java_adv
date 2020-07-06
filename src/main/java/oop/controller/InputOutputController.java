@@ -5,6 +5,7 @@ import oop.model.enums.Gender;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public abstract class InputOutputController {
@@ -13,8 +14,26 @@ public abstract class InputOutputController {
      */
     private String usersFilePath = "C:\\tarr5_java_adv\\src\\main\\resources\\file\\users.csv";
 
-    public void saveUsersToFile() {
+    /*
+        public void saveUsersToFile() {
 
+        }
+    */
+    public void saveUsersToFile() {
+        try {
+            PrintWriter pw = new PrintWriter(new File(usersFilePath));
+            for (User user : UserControllerTemplate.users) {
+                pw.println(String.format(
+                        "%d;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s",
+                        user.getUserId(), user.getName(), user.getLastName(), user.getEmail(), user.getPassword(),
+                        user.getPhone(), user.getGender(), user.getRoles(), user.getRegistrationDateTime(), user.isStatus(),
+                        user.isRemoved()
+                ));
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void readUsersFromFile() {
