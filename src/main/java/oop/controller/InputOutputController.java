@@ -14,11 +14,7 @@ public abstract class InputOutputController {
      */
     private String usersFilePath = "C:\\tarr5_java_adv\\src\\main\\resources\\file\\users.csv";
 
-    /*
-        public void saveUsersToFile() {
 
-        }
-    */
     public void saveUsersToFile() {
         try {
             PrintWriter pw = new PrintWriter(new File(usersFilePath));
