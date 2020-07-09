@@ -51,12 +51,14 @@ public class Run extends InputOutputController {
         run.readUsersFromFile();
 
         while (true) {
-            System.out.println(" Co chcesz zrobić \n1. Rejestracja \n2.Lista użytkowników \n3 Logowanie \n4 Zmiana hasła \nQ Wyjście");
+            System.out.println(" Co chcesz zrobić \n1.Rejestracja \n2.Lista użytkowników \n3 Logowanie \n4 Zmiana hasła \nQ Wyjście");
+
             String choice = scanner.nextLine().toUpperCase();
+
             if (choice.equals("1")) {
                 System.out.println("podaj imię : ");
                 String name = scanner.nextLine();
-                System.out.println("podaj nazwisako : ");
+                System.out.println("podaj nazwisko : ");
                 String lastName = scanner.nextLine();
 
                 System.out.println("podaj email : ");
@@ -66,7 +68,6 @@ public class Run extends InputOutputController {
                 * source: https://emailregex.com/
                 * General Email Regex (RFC 5322 Official Standard)
                 (?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
-                *
                  */
                 String emailPattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
                 // String emailPattern = "^\\S{1,}[@]\\S{1,}$";
@@ -80,7 +81,6 @@ public class Run extends InputOutputController {
                 String password = scanner.nextLine();
 
                 System.out.println("podaj płeć M/K : ");
-
                 String genderInput = scanner.nextLine().toUpperCase();
                 String genderPattern = "^[MK]{1}$";
                 if (!Pattern.matches(genderPattern, genderInput)) {
@@ -88,6 +88,7 @@ public class Run extends InputOutputController {
                     continue;
                 }
                 Gender gender = genderInput.equals("M") ? Gender.MAN : Gender.WOMAN;
+
                 System.out.println("podaj numer telefonu (000-000-000) ");
                 String phone = scanner.nextLine();
                 // walidacj na podstawie regex
@@ -97,11 +98,13 @@ public class Run extends InputOutputController {
                     continue;
 
                 }
+
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));
-                System.out.println("Dodano użytrkownika z mailem " + email);
+                System.out.println("Dodano użytkownika z mailem " + email);
 
             } else if (choice.equals("2")) {
                 uc.findAllUsers().forEach(user -> System.out.println(user));
+
             } else if (choice.equals("3")) {
                 System.out.println("Podaj email");
                 String email = scanner.nextLine();
