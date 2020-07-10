@@ -25,12 +25,15 @@ public class Run extends InputOutputController {
 
         while (true) {
 
-            System.out.println(" Co chcesz zrobić :" +
+            System.out.println(
+                    " Co chcesz zrobić :" +
+                    "\n--------------- " +
                     "\n1.Rejestracja " +
                     "\n2.Lista użytkowników " +
-                    "\n3 Logowanie " +
-                    "\n4 Zmiana hasła " +
-                    "\nQ Wyjście");
+                    "\n3.Logowanie " +
+                    "\n4.Zmiana hasła " +
+                    "\nQ Wyjście" +
+                     "\n-------------- ");
 
             String choice = scanner.nextLine().toUpperCase();
 
