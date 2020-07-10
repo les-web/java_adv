@@ -31,6 +31,7 @@ public class Run extends InputOutputController {
                     "\n3 Logowanie " +
                     "\n4 Zmiana hasła " +
                     "\nQ Wyjście");
+
             String choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
@@ -115,14 +116,14 @@ public class Run extends InputOutputController {
                         break;
                     }
                 }
-            }
+            } // end case
 
             if (choice.equals("Q")) {
                 System.out.println("Wyjście ");
                 run.saveUsersToFile();
                 break;
             }
-        }
+        } // end while
     }
 }
 /*
