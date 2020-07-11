@@ -2,11 +2,15 @@ package oop.controller;
 
 import oop.model.User;
 import oop.model.enums.Gender;
+import oop.model.enums.Role;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public abstract class InputOutputController {
     /*
@@ -37,8 +41,28 @@ public abstract class InputOutputController {
             Scanner scanner = new Scanner(new File(usersFilePath));
             while (scanner.hasNextLine()) {
                 String[] userLine = scanner.nextLine().split(";");
-                UserControllerTemplate.users.add(new User(userLine[1], userLine[2], userLine[3], userLine[4], userLine[5],
-                        userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN));
+                String[] rolesName = userLine[7].replace("[","").replace("]","").split(", ");
+                Set <Role> roles = new HashSet<>();
+                for (String role : rolesName){
+                    roles.add(Role.valueOf(role));
+                }
+                LocalDateTime registrationDateTime = LocalDateTime.of(
+                        Integer.valueOf(userLine[8].substring(0,4)),
+                        Integer.valueOf(userLine[8].substring(5,7)),
+                        Integer.valueOf(userLine[8].substring(8,10)),
+                        Integer.valueOf(userLine[8].substring(11,13)),
+                        Integer.valueOf(userLine[8].substring(14,16)),
+                        Integer.valueOf(userLine[8].substring(17,19))
+                        );
+                UserControllerTemplate.users.add(
+                        new User(Integer.valueOf(userLine[0]),
+                                userLine[1], userLine[2], userLine[3],
+                                userLine[4], userLine[5],
+                        userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN,
+                        roles,
+                        registrationDateTime,
+                        Boolean.valueOf(userLine[9]),
+                        Boolean.valueOf(userLine[10])));
 
             }
             scanner.close();
