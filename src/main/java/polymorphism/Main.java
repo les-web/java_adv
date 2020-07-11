@@ -11,7 +11,6 @@ public class Main {
         OpenSpace os2 = new OpenSpace(os1.getCompanyName(), os1.calculateFreeRooms(), 2, "Rzym", 10);
         OpenSpace os3 = new OpenSpace(os1.getCompanyName(), os2.calculateFreeRooms(), 3, "Paryż", 25);
         System.out.println(os1);
-
         System.out.println(os2);
         System.out.println(os3);
     }
