@@ -5,8 +5,10 @@ import oop.model.enums.Role;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /****************************
  *  Klasa controllera -
@@ -82,9 +84,22 @@ public class UserController implements UserControllerTemplate {
     //----------------------------------
     @Override
     public void deleteUserById(int userId) {
+        if (findUserById(userId) == null) {
+            System.out.println("Nie ma użytkownika o id " + userId);
+
+        }
+        for (User user : users) {
+            if (user.getUserId() == userId) {
+                users.remove(user);
+                System.out.println("Usunieto użytkownika + " + user.getEmail());
+                break;
+            }
+        }
+
 
     }
 
+    // zadanie domowe
     @Override
     public void updateRole(int userId, Set<Role> newRoles) {
 
@@ -96,7 +111,17 @@ public class UserController implements UserControllerTemplate {
     }
 
     @Override
-    public List<User> findAllUsersOrderByArg(UserField userField, boolean asc) {
-        return null;
+    public List<User> findAllUsersOrderByEmail(boolean asc) {
+        // zamiana List na Stream
+        if (asc) {
+            return users.stream()
+                    .sorted(Comparator.comparing(user -> user.getEmail()))
+                    .collect(Collectors.toList());
+        } else {
+            return users.stream()
+                    .sorted(Comparator.comparing(User::getEmail).reversed())
+                    .collect(Collectors.toList());
+        }
+
     }
 }

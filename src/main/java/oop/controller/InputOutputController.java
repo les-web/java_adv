@@ -46,6 +46,7 @@ public abstract class InputOutputController {
                 for (String role : rolesName){
                     roles.add(Role.valueOf(role));
                 }
+                // mapowanie obiektu na typu data
                 LocalDateTime registrationDateTime = LocalDateTime.of(
                         Integer.valueOf(userLine[8].substring(0,4)),
                         Integer.valueOf(userLine[8].substring(5,7)),

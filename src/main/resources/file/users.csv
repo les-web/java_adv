@@ -1,5 +1,5 @@
-1;Jan;Kowalski;jan.kowalski@wp.pl;11603dcbcfdd6af7d338770957533bd;123-456-789;MAN;[ROLE_USER];2020-07-11T08:47:54.945792800;false;false
-2;Joanna;Wiśniewska;joanna.wisniewska@gmail.com;d979871f68a9e367eb3a5df8be7c4bf4;345-678-901;WOMAN;[ROLE_USER];2020-07-11T08:47:54.945792800;false;false
-3;Vincent;van Gogh;vincent@t.pl;b15ab3f829f0f897fe507ef548741afb;100-100-100;MAN;[ROLE_USER];2020-07-11T08:47:54.945792800;false;false
-4;John;Smith;john.smith@gmail.com;527bd5b5d689e2c32ae974c6229ff785;111-345-678;MAN;[ROLE_USER];2020-07-11T08:47:54.945792800;false;false
-5;Hans;Kloss;hans.kloss@abwehra.de;f2a0ffe83ec8d44f2be4b624b0f47dde;023-023-023;MAN;[ROLE_USER];2020-07-11T08:47:54.945792800;false;false
+1;Jan;Kowalski;jan.kowalski@wp.pl;11603dcbcfdd6af7d338770957533bd;123-456-789;MAN;[ROLE_USER];2020-07-11T08:47:54;false;false
+2;Joanna;Wiśniewska;joanna.wisniewska@gmail.com;d979871f68a9e367eb3a5df8be7c4bf4;345-678-901;WOMAN;[ROLE_USER];2020-07-11T08:47:54;false;false
+4;John;Smith;john.smith@gmail.com;527bd5b5d689e2c32ae974c6229ff785;111-345-678;MAN;[ROLE_USER];2020-07-11T08:47:54;false;false
+5;Hans;Kloss;hans.kloss@abwehra.de;f2a0ffe83ec8d44f2be4b624b0f47dde;023-023-023;MAN;[ROLE_USER];2020-07-11T08:47:54;false;false
+6;Ala;Makota;ala@makota.com;e88e6128e26eeff4daf1f5db7372784;111-222-333;WOMAN;[ROLE_USER];2020-07-11T09:59:02;false;false

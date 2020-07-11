@@ -32,8 +32,11 @@ public class Run extends InputOutputController {
                     "\n2.Lista użytkowników " +
                     "\n3.Logowanie " +
                     "\n4.Zmiana hasła " +
+                    "\n5.Usuń użytkownika " +
+                    "\n6.Lista użytkowników posortowanych wg email " +
+
                     "\nQ Wyjście" +
-                     "\n-------------- ");
+                    "\n-------------- ");
 
             String choice = scanner.nextLine().toUpperCase();
 
@@ -110,6 +113,26 @@ public class Run extends InputOutputController {
                     } catch (InputMismatchException e) {
                         System.out.println("Błędny id");
                     }
+                    break;
+                }
+                case "5": {
+                    try {
+                        System.out.println("Podaj id użytkownika do usunięcia: ");
+                        int userId = Integer.valueOf(scanner.nextLine());
+                        uc.deleteUserById(userId);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Błędny id");
+                    }
+                    break;
+                }
+                case "6": {
+                    System.out.println("Czy chcesz posortować rosnąco/malejąco ASC/DESC");
+                    boolean asc = true;
+                    String decision = scanner.nextLine();
+                    if (decision.toUpperCase().equals("DESC")) {
+                        asc = false;
+                    }
+                    uc.findAllUsersOrderByEmail(asc).forEach(user -> System.out.println(user));
                     break;
                 }
 
