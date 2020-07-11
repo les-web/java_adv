@@ -87,12 +87,13 @@ public class UserController implements UserControllerTemplate {
         if (findUserById(userId) == null) {
             System.out.println("Nie ma użytkownika o id " + userId);
 
-        }
-        for (User user : users) {
-            if (user.getUserId() == userId) {
-                users.remove(user);
-                System.out.println("Usunieto użytkownika + " + user.getEmail());
-                break;
+        } else {
+            for (User user : users) {
+                if (user.getUserId() == userId) {
+                    users.remove(user);
+                    System.out.println("Usunieto użytkownika + " + user.getEmail());
+                    break;
+                }
             }
         }
 
