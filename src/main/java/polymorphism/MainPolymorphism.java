@@ -3,12 +3,12 @@ package polymorphism;
 public class MainPolymorphism {
     public static void hasMoreRooms(Company c1, Company c2) {
         if (c1.getRoomsQuantity() > c2.getRoomsQuantity()) {
-            System.out.println("Firma " + c1.getCompanyName() + "posiada wiecej pokoi");
+            System.out.println("Firma " + c1.getCompanyName() + " posiada wiecej pokoi");
         } else {
-            System.out.println("Firma " + c2.getCompanyName() + "posiada wiecej pokoi");
+            System.out.println("Firma " + c2.getCompanyName() + " posiada wiecej pokoi");
         }
         if (c1.getRoomsQuantity() == c2.getRoomsQuantity()) {
-            System.out.println("Obie mają taką samą ilość pokoi");
+            System.out.println(" Obie mają taką samą ilość  pokoi ");
         }
 
 
