@@ -103,7 +103,12 @@ public class UserController implements UserControllerTemplate {
     // zadanie domowe
     @Override
     public void updateRole(int userId, Set<Role> newRoles) {
-
+        if (findUserById(userId) != null) {
+            User user = findUserById(userId);
+            user.setRoles(newRoles);
+        } else {
+            System.out.println("Nie ma uzytkownika o id :" + userId);
+        }
     }
 
     @Override

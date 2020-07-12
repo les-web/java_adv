@@ -5,12 +5,11 @@ import oop.controller.UserController;
 import oop.controller.UserControllerTemplate;
 import oop.model.User;
 import oop.model.enums.Gender;
+import oop.model.enums.Role;
 import org.w3c.dom.ls.LSOutput;
 
 import javax.crypto.spec.PSource;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class Run extends InputOutputController {
@@ -27,16 +26,17 @@ public class Run extends InputOutputController {
 
             System.out.println(
                     " Co chcesz zrobić :" +
-                    "\n--------------- " +
-                    "\n1.Rejestracja " +
-                    "\n2.Lista użytkowników " +
-                    "\n3.Logowanie " +
-                    "\n4.Zmiana hasła " +
-                    "\n5.Usuń użytkownika " +
-                    "\n6.Lista użytkowników posortowanych wg email " +
+                            "\n--------------- " +
+                            "\n1.Rejestracja " +
+                            "\n2.Lista użytkowników " +
+                            "\n3.Logowanie " +
+                            "\n4.Zmiana hasła " +
+                            "\n5.Usuń użytkownika " +
+                            "\n6.Lista użytkowników posortowanych wg email " +
+                            "\n7.Przypisz role do użytkownika " +
 
-                    "\nQ Wyjście" +
-                    "\n-------------- ");
+                            "\nQ Wyjście" +
+                            "\n-------------- ");
 
             String choice = scanner.nextLine().toUpperCase();
 
@@ -134,6 +134,42 @@ public class Run extends InputOutputController {
                     }
                     uc.findAllUsersOrderByEmail(asc).forEach(user -> System.out.println(user));
                     break;
+                }
+                case "7": {
+                    try {
+                        System.out.println("Podaj id użytkownika do zmiany ról: ");
+                        int userId = Integer.valueOf(scanner.nextLine());
+                        // wybór ról
+                        Set<Role> roles = new HashSet<>();
+                        if (uc.findUserById(userId) == null) {
+                            break;
+                        }
+
+                        while (true) {
+                            System.out.println("Wybierz role (Q - koniec) : ");
+                            Arrays.stream(Role.values()).forEach(role -> System.out.println(role.ordinal() +
+                                    ". " + role));
+                            String decision = scanner.nextLine();
+
+                            if (decision.equals("0")) {
+                                roles.add(Role.ROLE_USER);
+                            } else if (decision.equals("1")) {
+                                roles.add(Role.ROLE_ADMIN);
+                            } else if (decision.equals("2")) {
+                                roles.add(Role.ROLE_VIEWER);
+                            } else if (decision.toUpperCase().equals("Q")) {
+                                System.out.println("Zaktualizowano zbior rol");
+                                break;
+
+                            } else {
+                                System.out.println("Bledny wobor");
+                            }
+                        }
+                        uc.updateRole(userId, roles);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Błędny id");
+                    }
+
                 }
 
                 default: {
