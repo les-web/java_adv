@@ -144,7 +144,6 @@ public class Run extends InputOutputController {
                         if (uc.findUserById(userId) == null) {
                             break;
                         }
-
                         while (true) {
                             System.out.println("Wybierz role (Q - koniec) : ");
                             Arrays.stream(Role.values()).forEach(role -> System.out.println(role.ordinal() +
