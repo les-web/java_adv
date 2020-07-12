@@ -1,9 +1,9 @@
 package pizzaExercises;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import lambda_stream_optional.InMemoryData;
+
+import javax.swing.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PizzaController {
@@ -61,6 +61,40 @@ public class PizzaController {
                 );
     }
 
+    // zwraca ilość skłądników mięsnych
+    public long countMeatIngredients(Pizza pizza) {
+        return pizza.getIngredients().stream().filter(Ingredient::isMeat).count();
+    }
+
+    // zwraca miesne posortowane po ilości składników miesnych
+    public List<Pizza> iLikeMeat() {
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(Ingredient::isMeat))
+                .sorted(Comparator.comparing(this::countMeatIngredients).reversed())
+                .collect(Collectors.toList());
+    }
+
+    // metoda grupująca pizze po cenie
+
+    public Map<Integer, List<Pizza>> groupByPrice() {
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> calculatePizzaPrice(pizza)));
+
+    }
+
+    // grupowanie po poziomie ostrości
+    public Map<Boolean, List<Pizza>> groupBySpicy() {
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients()
+                .stream().anyMatch(ingredient -> ingredient.isSpicy())));
+
+    }
+
+    // po ilosci skladnikow
+    public Map<Integer, List<Pizza>> gropuByIngredientsSize() {
+        return Arrays.stream(Pizza.values())
+                .collect(Collectors.groupingBy(pizza -> pizza.getIngredients()
+                        .size()));
+
+    }
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
@@ -72,5 +106,13 @@ public class PizzaController {
         pc.getAllPizzasWithPrices();
         System.out.println("Najdroższa wegetariańska");
         System.out.println(pc.findMostExpensiveVegetarian());
+        System.out.println("Posortowane po ilosci skladnikow - tylko miesne");
+        pc.iLikeMeat().forEach(pizza -> System.out.println(pizza + " " + pc.countMeatIngredients(pizza)));
+        System.out.println("Grupowanie po cenach");
+        System.out.println();
+        pc.groupByPrice().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+        pc.groupBySpicy().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+        pc.gropuByIngredientsSize().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+
     }
 }
