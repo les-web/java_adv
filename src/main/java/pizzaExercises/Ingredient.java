@@ -1,4 +1,5 @@
 package pizzaExercises;
+
 public enum Ingredient {
     THIN_CRUST("cienkie ciasto", 12, false, false),
     THICK_CRUST("grube ciasto", 14, false, false),
@@ -25,43 +26,50 @@ public enum Ingredient {
     HAM("szynka", 3, true, false),
     BASIL("bazylia", 0, false, false),
     PEPPER("pieprz", 0, false, true),
-    TABASCO_SUACE("tabasco", 0, false, true) ;
+    TABASCO_SUACE("tabasco", 0, false, true);
     private final String name;
     private final int price;
     private final boolean meat;
     private final boolean spicy;
+
     private Ingredient(String name, int price, boolean meat, boolean spicy) {
         this.name = name;
         this.price = price;
         this.meat = meat;
         this.spicy = spicy;
     }
+
     /**
      * Zwraca nazwe skladnika
+     *
      * @return
      */
     public String getName() {
         return name;
     }
+
     /**
      * Zwraca cene skladnika
      */
     public int getPrice() {
         return price;
     }
+
     /**
      * zwraca true jesli skladnik jest miesem (nie dla
-     wegetarian)
+     * wegetarian)
      */
     public boolean isMeat() {
         return meat;
     }
+
     /**
      * zwraca true jesli skladnik jest pikantny
      */
     public boolean isSpicy() {
         return spicy;
     }
+
     @Override
     public String toString() {
         return name;
