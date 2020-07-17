@@ -10,15 +10,17 @@ public class PizzaController {
 
     // podaje cenę pizzy na podstawie składowych
     public int calculatePizzaPrice(Pizza pizza) {
-        return pizza.getIngredients().stream()
+        return pizza.getIngredients()
+                .stream()
                 .mapToInt(p -> p.getPrice())
                 .sum();
     }
 
     // metoda sprawdzająca tylko ostre pizze
     public List<Pizza> getAllSpicy() {
-        return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
-                .anyMatch(ingredient -> ingredient.isSpicy()))
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream()
+                        .anyMatch(ingredient -> ingredient.isSpicy()))
                 .collect(Collectors.toList());
     }
 
@@ -99,7 +101,7 @@ public class PizzaController {
     // zwraca string String formatedMenu() -metoda zwracająca string w postaci
     // nazwa_pizzy: składnik1, składnik2, składnik3 -cena,
     // kolejne pizzęoddzielone znakiem nowej linii.
-// pizza menu : nazwa (składniki) - cena zł
+    // pizza menu : nazwa (składniki) - cena zł
     public String formattedMenu() {
         Random random = new Random();
         int randomIndex = random.nextInt(Pizza.values().length);
@@ -118,6 +120,14 @@ public class PizzaController {
                         pizza.equals(pizzaOfTheDay) ? "*" : ""
                         )
                 )
+                // posortowane wg nazwy
+                .sorted(Comparator.comparing(pizza -> pizza.trim().toString()))
+
+                // posortowane wg ceny
+
+                //                .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+
+
                 .collect(Collectors.joining("\n"));
     }
 
@@ -136,8 +146,12 @@ public class PizzaController {
         System.out.println("Grupowanie po cenach");
         System.out.println();
         pc.groupByPrice().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+        System.out.println("Grupowanie po ostrości true/false");
+
         pc.groupBySpicy().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+        System.out.println("Grupowanie po ilości składników");
         pc.gropuByIngredientsSize().forEach((price, pizzas) -> System.out.println(price + " - " + pizzas));
+        System.out.println("--------------- Pełne menu wraz z pizzą dnia -------------------");
         System.out.println(pc.formattedMenu());
     }
 }
