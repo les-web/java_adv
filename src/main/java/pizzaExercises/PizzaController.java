@@ -125,7 +125,8 @@ public class PizzaController {
 
                 // posortowane wg ceny
 
-                //                .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+                //                .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza))
+
                 //         .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
 
 
