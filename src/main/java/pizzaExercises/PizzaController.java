@@ -121,11 +121,12 @@ public class PizzaController {
                         )
                 )
                 // posortowane wg nazwy
-                .sorted(Comparator.comparing(pizza -> pizza.trim().toString()))
+                    .sorted(Comparator.comparing(pizza -> pizza.trim().toString()))
 
                 // posortowane wg ceny
 
                 //                .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+                //         .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
 
 
                 .collect(Collectors.joining("\n"));
