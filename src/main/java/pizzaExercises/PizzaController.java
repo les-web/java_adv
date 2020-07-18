@@ -184,9 +184,10 @@ public class PizzaController {
                 .collect(Collectors.joining("\n"));
     }
 
-public int calculateIngredientsSize(Pizza pizza){
+    public int calculateIngredientsSize(Pizza pizza) {
         return pizza.getIngredients().size();
-}
+    }
+
     public String formattedMenuOrderByNumberOfIngedients() {
         Random random = new Random();
         int randomIndex = random.nextInt(Pizza.values().length);
