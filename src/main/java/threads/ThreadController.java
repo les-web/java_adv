@@ -4,16 +4,16 @@ import java.sql.Time;
 import java.util.*;
 
 public class ThreadController {
-    Deque<Integer> numbers = new ArrayDeque<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+    Deque<Integer> numbers = new ArrayDeque<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 
     // metoda implementująca wątek wypisujący wszystkie liczby
-    public void printNumbers(Thread thread){
+    public void printNumbers(Thread thread) {
         // utworzenie klasy anonimowej
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 long timeStart = System.currentTimeMillis();
-                while(!numbers.isEmpty()) {
+                while (!numbers.isEmpty()) {
                     try {
 //                        Thread.currentThread().sleep(new Random().nextInt(6) * 1000);     // uśpienie wąktu thread na 1s
                         Thread.currentThread().sleep(1000);
@@ -30,7 +30,7 @@ public class ThreadController {
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    } catch (NoSuchElementException e){
+                    } catch (NoSuchElementException e) {
                         break;
                     }
                 }
@@ -39,6 +39,7 @@ public class ThreadController {
         });
         thread.start();         // uruchomienie wątku -> "wykonanie metody run()"
     }
+
     public static void main(String[] args) throws InterruptedException {
         ThreadController tc = new ThreadController();
         long timeStart = System.currentTimeMillis();
@@ -47,7 +48,7 @@ public class ThreadController {
         tc.printNumbers(th1);
         tc.printNumbers(th2);
         tc.printNumbers(th3);
-        System.out.println("Wątek: " +Thread.currentThread().getName());
+        System.out.println("Wątek: " + Thread.currentThread().getName());
 
     }
 }
