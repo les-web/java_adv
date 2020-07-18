@@ -32,13 +32,12 @@ public class ReadWriteExceptionHandler {
                 if (number == 0) {
                     throw new ArithmeticException();
 
-                }
-                if (number == 13) {
+                } else if (number == 13) {
                     throw new MyException();
-                }
+                } else
 
 
-                fileWriter.append(String.valueOf(number) + "\n");
+                    fileWriter.append(String.valueOf(number) + "\n");
 //
             } catch (IOException e) {
                 e.printStackTrace();
@@ -48,7 +47,7 @@ public class ReadWriteExceptionHandler {
                 System.out.println("Blad typu danych");
             } catch (ArithmeticException e) {
                 System.out.println("Wprowadzona liczba nie moze byc 0");
-            } catch (MyException e){
+            } catch (MyException e) {
                 e.printStackTrace();
             } finally {
                 try {

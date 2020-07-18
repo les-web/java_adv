@@ -3,8 +3,8 @@ package exceptions;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class MyException extends Exception{
-    public MyException (){
+public class MyException extends Exception {
+    public MyException() {
         System.out.println("Jestem w konstruktorze : MyException");
     }
 
@@ -13,7 +13,8 @@ public class MyException extends Exception{
         super.printStackTrace();
         System.out.println("Moja obsluga wyjatku");
     }
-    public String  getExceptionDateTime (){
+
+    public String getExceptionDateTime() {
         return DateTimeFormatter.ofPattern("dd.MM.yyyy'r.' '('HH:mm:ss'").format(LocalDateTime.now());
     }
 }
