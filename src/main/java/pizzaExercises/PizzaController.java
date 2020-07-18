@@ -121,7 +121,7 @@ public class PizzaController {
                         )
                 )
                 // posortowane wg nazwy
-                    .sorted(Comparator.comparing(pizza -> pizza.trim().toString()))
+                .sorted(Comparator.comparing(pizza -> pizza.trim().toString()))
 
                 // posortowane wg ceny
 
@@ -155,6 +155,61 @@ public class PizzaController {
                 .collect(Collectors.joining("\n"));
     }
 
+    public double calculatePizzaPriceWithDiscount(Pizza pizza, Pizza pizzaOfTheDay) {
+        return pizza.equals(pizzaOfTheDay) ? calculatePizzaPrice(pizza) * 0.5 : calculatePizzaPrice(pizza);
+    }
+
+
+    public String formattedMenuOrderByPrice() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(Pizza.values().length);
+        Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
+
+        return Arrays.stream(Pizza.values())
+
+                .sorted(Comparator.comparing(pizza -> calculatePizzaPriceWithDiscount(pizza, pizzaOfTheDay)))
+                .map(pizza -> String.format("%15s (%-90s) %5s %4s - %5.2f zł %1s",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(Ingredient::getName).collect(Collectors.joining(", ")),
+                        pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()) ?
+                                "ostra" : "",
+                        pizza.getIngredients().stream().noneMatch(Ingredient::isMeat) ? "wege" : "",
+                        pizza.equals(pizzaOfTheDay) ?
+                                Double.valueOf(calculatePizzaPrice(pizza)) * 0.5 :
+                                Double.valueOf(calculatePizzaPrice(pizza))
+                        ,
+                        pizza.equals(pizzaOfTheDay) ? "*" : ""
+                        )
+                )
+                .collect(Collectors.joining("\n"));
+    }
+
+public int calculateIngredientsSize(Pizza pizza){
+        return pizza.getIngredients().size();
+}
+    public String formattedMenuOrderByNumberOfIngedients() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(Pizza.values().length);
+        Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
+
+        return Arrays.stream(Pizza.values())
+
+                .sorted(Comparator.comparing(this::calculateIngredientsSize).reversed())
+                .map(pizza -> String.format("%15s (%-90s) %5s %4s - %5.2f zł %1s",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(Ingredient::getName).collect(Collectors.joining(", ")),
+                        pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()) ?
+                                "ostra" : "",
+                        pizza.getIngredients().stream().noneMatch(Ingredient::isMeat) ? "wege" : "",
+                        pizza.equals(pizzaOfTheDay) ?
+                                Double.valueOf(calculatePizzaPrice(pizza)) * 0.5 :
+                                Double.valueOf(calculatePizzaPrice(pizza))
+                        ,
+                        pizza.equals(pizzaOfTheDay) ? "*" : ""
+                        )
+                )
+                .collect(Collectors.joining("\n"));
+    }
 
 
     public static void main(String[] args) {
@@ -181,6 +236,9 @@ public class PizzaController {
         System.out.println(pc.formattedMenu());
         System.out.println("--------------- Pełne menu posortowane wraz z pizzą dnia -------------------");
         System.out.println(pc.formattedMenuOrderByName());
-
+        System.out.println("--------------- Pełne menu posortowane po cenie  -------------------");
+        System.out.println(pc.formattedMenuOrderByPrice());
+        System.out.println("--------------- Pełne menu posortowane po ilości składników  -------------------");
+        System.out.println(pc.formattedMenuOrderByNumberOfIngedients());
     }
 }
