@@ -26,8 +26,11 @@ public class Main {
         System.out.println("Taski");
         Task task = new Task();
         Task task1 = new Task("nauka javy", "programowanie obiektowe", false, userAllArgs);
+        Task task2 = new Task("nauka jazdy", "kategoria A,B,C,D", false, userNoArgs);
+
         System.out.println(task);
         System.out.println(task1);
+        System.out.println(task2);
 
 
     }
