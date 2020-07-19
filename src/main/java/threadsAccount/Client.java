@@ -9,26 +9,27 @@ import java.util.Random;
 @Data
 public class Client implements Runnable {
     private Account account;
+
     @Override
     public void run() {
-        while(account.getAccountSaldo() > 0){
+        //       while (account.getAccountSaldo() > 0) {
+        int i = 30;
+        while (i >= 0) {
+
             try {
                 Thread.sleep(new Random().nextInt(500));
                 int amount = new Random().nextInt(100) + 1;
-                System.out.println("Wątek: " + Thread.currentThread().getName());
-                System.out.printf("Wypłacam z rachunku %s kwotę: %.2fzł\n",
-                        account.getAccountNumber(),
-                        Double.valueOf(amount));
-                Thread.sleep(new Random().nextInt(500));
-                account.getOutcome(amount);
-                System.out.printf("Aktualne saldo dla rachunku %s : %.2fzł\n",
-                        account.getAccountNumber(),
-                        Double.valueOf(account.getAccountSaldo()));
+                int decision = new Random().nextInt(2);
+                if (decision == 0) {
 
-                Thread.sleep(new Random().nextInt(500));
+                    account.getOutcome(amount);
+                } else {
+                    account.addIncome(amount/2);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            i--;
         }
     }
 }
