@@ -17,14 +17,14 @@ public class Client implements Runnable {
         while (i >= 0) {
 
             try {
-                Thread.sleep(new Random().nextInt(500));
-                int amount = new Random().nextInt(100) + 1;
+                Thread.sleep(new Random().nextInt(1000));
+                int amount = new Random().nextInt((10) + 1) * 10;
                 int decision = new Random().nextInt(2);
                 if (decision == 0) {
 
                     account.getOutcome(amount);
                 } else {
-                    account.addIncome(amount/2);
+                    account.addIncome(amount / 2);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
